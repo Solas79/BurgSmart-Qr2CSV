@@ -1,3 +1,12 @@
+Bei der einrichtung einer secuEntry Schliessanlage kam ich an folgendes Problem:
+  Dier Software Version ist schon etwas älter und unterstützt beim Smartphone-User Import nur CSV-Dateien.
+  Beim Versuch die CSV-Datei zu versenden kom bei vielen Nutzern die Meldung dass kein email Programm installiert sei.
+  Also bekam ich von ihnen den QR-Code zugeschickt.
+  Dieser wiederum lässt sich nur mit neuerer Software einlesen.
+  Laut Hersteller kann ein Software-Update jedoch das Problem erzeugen, daß der USB-Dongle nicht mehr funktionert.
+  Um dieses Problem zu lösen wurde diese kleine webApp geschrieben.
+
+  
 Einfache WebApp zum einlesen der BURGsmart QR-Codes (Smartphone-User).
 
 QR-Code als Datei oder über die Kamera einlesen und in eine CSV-Datei schreiben.
