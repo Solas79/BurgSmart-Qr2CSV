@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <section class="card" style="display:flex;align-items:center;gap:16px;">
+  <img src="assets/logo.png" alt="Logo" style="max-width:50px; height:auto;">
+  <div style="font-size:0.9rem; line-height:1.3">
+    <div>© Copyright by G. Nürnberger</div>
+    <div style="color:#f87171; font-weight:600">Kein offizielles Tool von BurgWächter</div>
+  </div>
+</section>
+
+  <title>secuEntry – QR → CSV</title>
+  <link rel="manifest" href="manifest.json">
+  <!-- Favicon in verschiedenen Größen -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#0f172a">
+  <style>
+    .cam-preview-wrapper {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .cam-preview-wrapper > section {
+      flex: 1 1 300px;
+      min-width: 280px;
+    }
+  </style>
+</head>
+<body>
+<!--  <header>
+    <h1>secuEntry – QR → CS     BURGsmartV</h1
+    <button id="installBtn" hidden>App installieren</button>
+  </header> -->
+
+  <section class="card">
+    <h2>1) Header laden (erste Zeile = Spalten)</h2>
+    <div class="row">
+      <input type="file" id="headerFile" accept=".csv" />
+      <button id="useDemoHeader">secuEntry-Header</button>
+    </div>
+    <pre id="headerPreview" class="mono"></pre>
+  </section>
+
+  <section class="card">
+    <h2>2) Bilder auswählen</h2>
+    <input type="file" id="images" accept=".png,.jpg,.jpeg,.bmp,.webp" 
+multiple />
+    <p class="hint">Tipp: mehrere Dateien markieren – alle werden nacheinander gelesen.</p>
+  </section>
+
+  <!-- Kamera und Vorschau nebeneinander, aber responsive -->
+  <div class="cam-preview-wrapper">
+    <section class="card">
+      <h2>oder Kamera nutzen</h2>
+      <div class="row">
+        <button id="startCam">Kamera starten</button>
+        <button id="snap" disabled>QR aufnehmen</button>
+        <button id="stopCam" disabled>Stop</button>
+      </div>
+      <video id="video" playsinline style="max-width:100%"></video>
+      <canvas id="canvas" hidden></canvas>
+    </section>
+
+    <section class="card">
+      <h2>Vorschau (letzter Scan)</h2>
+      <div id="previewEmpty" class="hint">Noch kein QR gescannt.</div>
+      <div id="previewBox" style="display:none">
+        <table id="previewTable" class="mono" style="width:100%; border-collapse:collapse"></table>
+        <div class="row" style="margin-top:10px">
+          <button id="copyRow">In Zwischenablage</button>
+          <button id="saveRow">Als CSV speichern</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="card">
+    <h2>3) Export</h2>
+    <div class="row">
+      <label><input type="checkbox" id="separateFiles"> pro Datensatz eigene CSV</label>
+      <button id="runBtn">Bilder → CSV</button>
+      <a id="downloadLink" class="btn" download="export.csv" hidden>CSV herunterladen</a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Log</h2>
+    <pre id="log" class="mono"></pre>
+  </section>
+
+  <!-- jsQR nur laden, wenn vorhanden (offline im /vendor Ordner) -->
+  <script>
+    (function () {
+      const s = document.createElement('script');
+      s.src = 'vendor/jsQR.min.js';
+      s.onload = () => document.documentElement.dataset.jsqr = '1';
+      s.onerror = () => console.info('jsQR nicht gefunden – Kamera-Feature bleibt aus.');
+      document.head.appendChild(s);
+    })();
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>
+
