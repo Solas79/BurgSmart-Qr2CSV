@@ -6,6 +6,7 @@ Bei der einrichtung einer secuEntry Schliessanlage kam ich an folgendes Problem:
   Laut Hersteller kann ein Software-Update jedoch das Problem erzeugen, daß der USB-Dongle nicht mehr funktionert.
   Um dieses Problem zu lösen wurde diese kleine webApp geschrieben.
 
+Onliene link: https://solas79.github.io/BurgSmart-Qr2CSV/
   
 Einfache WebApp zum einlesen der BURGsmart QR-Codes (Smartphone-User).
 
