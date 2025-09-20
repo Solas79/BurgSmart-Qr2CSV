@@ -13,16 +13,30 @@
 
   <title>secuEntry – QR → CSV</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="assets/icon-192.png">
+  <!-- Favicon in verschiedenen Größen -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
   <link rel="apple-touch-icon" href="assets/icon-192.png">
   <link rel="stylesheet" href="style.css">
   <meta name="theme-color" content="#0f172a">
+  <style>
+    .cam-preview-wrapper {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .cam-preview-wrapper > section {
+      flex: 1 1 300px;
+      min-width: 280px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-<!--    <h1>secuEntry – QR → CS     BURGsmartV</h1> -->
+<!--  <header>
+    <h1>secuEntry – QR → CS     BURGsmartV</h1
     <button id="installBtn" hidden>App installieren</button>
-  </header>
+  </header> -->
 
   <section class="card">
     <h2>1) Header laden (erste Zeile = Spalten)</h2>
@@ -35,20 +49,36 @@
 
   <section class="card">
     <h2>2) Bilder auswählen</h2>
-    <input type="file" id="images" accept=".png,.jpg,.jpeg,.bmp,.webp" multiple />
+    <input type="file" id="images" accept=".png,.jpg,.jpeg,.bmp,.webp" 
+multiple />
     <p class="hint">Tipp: mehrere Dateien markieren – alle werden nacheinander gelesen.</p>
   </section>
 
-  <section class="card" id="camSection" hidden>
-    <h2>oder Kamera nutzen</h2>
-    <div class="row">
-      <button id="startCam">Kamera starten</button>
-      <button id="snap" disabled>QR aufnehmen</button>
-      <button id="stopCam" disabled>Stop</button>
-    </div>
-    <video id="video" playsinline></video>
-    <canvas id="canvas" hidden></canvas>
-  </section>
+  <!-- Kamera und Vorschau nebeneinander, aber responsive -->
+  <div class="cam-preview-wrapper">
+    <section class="card">
+      <h2>oder Kamera nutzen</h2>
+      <div class="row">
+        <button id="startCam">Kamera starten</button>
+        <button id="snap" disabled>QR aufnehmen</button>
+        <button id="stopCam" disabled>Stop</button>
+      </div>
+      <video id="video" playsinline style="max-width:100%"></video>
+      <canvas id="canvas" hidden></canvas>
+    </section>
+
+    <section class="card">
+      <h2>Vorschau (letzter Scan)</h2>
+      <div id="previewEmpty" class="hint">Noch kein QR gescannt.</div>
+      <div id="previewBox" style="display:none">
+        <table id="previewTable" class="mono" style="width:100%; border-collapse:collapse"></table>
+        <div class="row" style="margin-top:10px">
+          <button id="copyRow">In Zwischenablage</button>
+          <button id="saveRow">Als CSV speichern</button>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <section class="card">
     <h2>3) Export</h2>
@@ -56,18 +86,6 @@
       <label><input type="checkbox" id="separateFiles"> pro Datensatz eigene CSV</label>
       <button id="runBtn">Bilder → CSV</button>
       <a id="downloadLink" class="btn" download="export.csv" hidden>CSV herunterladen</a>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>Vorschau (letzter Scan)</h2>
-    <div id="previewEmpty" class="hint">Noch kein QR gescannt.</div>
-    <div id="previewBox" style="display:none">
-      <table id="previewTable" class="mono" style="width:100%; border-collapse:collapse"></table>
-      <div class="row" style="margin-top:10px">
-        <button id="copyRow">In Zwischenablage</button>
-        <button id="saveRow">Als CSV speichern</button>
-      </div>
     </div>
   </section>
 
@@ -89,3 +107,4 @@
   <script src="app.js"></script>
 </body>
 </html>
+
