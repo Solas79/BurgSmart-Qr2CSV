@@ -1,0 +1,16 @@
+:root { color-scheme: light dark; --bg:#0b1220; --card:#111827; --txt:#e5e7eb; --acc:#22c55e; }
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#0b1220;color:#e5e7eb}
+header{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:16px 20px;background:#111827;border-bottom:1px solid #1f2937}
+h1{font-size:20px;margin:0} h2{margin:.2rem 0 1rem}
+.card{background:#111827;margin:16px;padding:16px;border:1px solid #1f2937;border-radius:12px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button,.btn{background:#1f2937;color:#e5e7eb;border:1px solid #374151;padding:8px 14px;border-radius:10px;cursor:pointer}
+button:hover,.btn:hover{border-color:#4b5563}
+#video{max-width:100%;border:1px solid #1f2937;border-radius:8px}
+.mono{font-family:ui-monospace,Consolas,monospace;background:#0b1220;border:1px solid 
+#1f2937;border-radius:8px;padding:10px;max-height:200px;overflow:auto}
+.hint{opacity:.8;margin:.5rem 0 0}
+#downloadLink{background:#22c55e;border-color:#22c55e;color:#0b1220;font-weight:600}
+#previewTable td, #previewTable th { border:1px solid #1f2937; padding:6px 8px; }
+#previewTable th { text-align:left; opacity:.8; }
+
